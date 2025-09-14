@@ -1,25 +1,22 @@
-<form onsubmit="sendToWhatsApp(event)">
-  <label>Your Name:</label><br>
-  <input id="name" type="text" placeholder="Enter your name"><br><br>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact - Bibek College of Kathmandu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <form method="POST">
+        <label>Name:</label><br>
+        <input type="text" name="name"><br><br>
 
-  <label>Your Email:</label><br>
-  <input id="email" type="email" placeholder="Enter your email"><br><br>
+        <label>Email:</label><br>
+        <input type="email" name="email"><br><br>
 
-  <label>Your Message:</label><br>
-  <textarea id="message" placeholder="Write your message here..."></textarea><br><br>
+        <label>Message:</label><br>
+        <textarea name="message"></textarea><br><br>
 
-  <input type="submit" value="Send on WhatsApp">
-</form>
-
-<script>
-function sendToWhatsApp(event) {
-    event.preventDefault();
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let message = document.getElementById("message").value;
-
-    let text = `Hello, my name is ${name}. My email is ${email}. Message: ${message}`;
-    let url = `https://wa.me/9779768907001?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank'); // opens WhatsApp
-}
-</script>
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
