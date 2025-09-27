@@ -1,31 +1,258 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <title>Bibek College of Kathmandu</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lalnidhi Honey Farm - Pure Honey & Beekeeping Supplies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1600x900/fbbF24/333333?text=Golden+Honey+Harvest');
+            background-size: cover;
+            background-position: center;
+        }
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
-<body class="home-page">
-    <header>
-        <h1>Bibek College of Kathmandu</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="courses.html">Courses</a>
-            <a href="contact.html">Contact</a>
+<body class="bg-amber-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header id="home" class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-amber-900">Lalnidhi Honey Farm</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-700 hover:text-amber-600 transition">About</a>
+                <a href="#shop" class="text-gray-700 hover:text-amber-600 transition">Shop</a>
+                <a href="#visit" class="text-gray-700 hover:text-amber-600 transition">Visit Us</a>
+                <a href="#gallery" class="text-gray-700 hover:text-amber-600 transition">Gallery</a>
+                <a href="#contact" class="text-gray-700 hover:text-amber-600 transition">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden flex items-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-amber-100">About</a>
+            <a href="#shop" class="block py-2 px-4 text-sm hover:bg-amber-100">Shop</a>
+            <a href="#visit" class="block py-2 px-4 text-sm hover:bg-amber-100">Visit Us</a>
+            <a href="#gallery" class="block py-2 px-4 text-sm hover:bg-amber-100">Gallery</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-amber-100">Contact</a>
+        </div>
     </header>
 
     <main>
-        <h2>Welcome!</h2>
-        <p>This is the official website of <strong>Bibek College of Kathmandu</strong>. We provide high-quality education in various academic fields with expert faculty and modern facilities.</p>
-        <p><strong>📍 Location:</strong> Kathmandu, Nepal</p>
-    </main>
+        <!-- Hero Section -->
+        <section class="hero-bg text-white h-[80vh] flex items-center justify-center text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 drop-shadow-lg">Pure, Natural Honey, Straight from the Farm</h1>
+                <p class="text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">Experience the taste of pure nature with our filtered and unfiltered honey varieties.</p>
+                <div class="space-y-4 md:space-y-0 md:space-x-4">
+                    <a href="#shop-honey" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block">Order Honey</a>
+                    <a href="#visit" class="bg-transparent border-2 border-white hover:bg-white hover:text-amber-900 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block">Visit the Farm</a>
+                </div>
+            </div>
+        </section>
 
-    <footer style="text-align:center; padding:20px; color: #555;">
-        &copy; <span id="current-year"></span> Bibek College of Kathmandu. All rights reserved.
-    </footer>
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-amber-900 mb-6">About Lalnidhi Honey Farm</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
+                    It is a farm where you can get very pure honey with full filter or unfiltered as per your preference. We are dedicated to sustainable beekeeping practices to bring you the highest quality honey. We also provide other high-quality beekeeping equipment to support fellow apiarists.
+                </p>
+            </div>
+        </section>
 
-    <!-- JavaScript file -->
-    <script src="script.js"></script>
-</body>
-</html>
+        <!-- Shop Section -->
+        <section id="shop" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-amber-900 mb-12 text-center">Our Products</h2>
+
+                <!-- Honey Products -->
+                <div id="shop-honey" class="mb-16">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Farm Fresh Honey</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Product Card: Filtered Honey 0.5kg -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                            <img src="https://placehold.co/400x300/fcaE1E/ffffff?text=Filtered+Honey" alt="Filtered Honey" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h4 class="text-xl font-semibold mb-2">Filtered Honey</h4>
+                                <p class="text-gray-600 mb-4">Crystal clear and smooth. Perfect for daily use.</p>
+                                <div class="text-2xl font-bold text-amber-700 mb-4">NPR 600 <span class="text-lg font-normal text-gray-500">/ 0.5 Kg</span></div>
+                                <button onclick="openBookingModal('Filtered Honey - 0.5 Kg', 'NPR 600')" class="w-full bg-amber-800 text-white py-2 px-4 rounded-lg hover:bg-amber-900 transition">Order Now</button>
+                            </div>
+                        </div>
+                        <!-- Product Card: Filtered Honey 1kg -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                           <img src="https://placehold.co/400x300/fcaE1E/ffffff?text=Filtered+Honey" alt="Filtered Honey" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h4 class="text-xl font-semibold mb-2">Filtered Honey</h4>
+                                <p class="text-gray-600 mb-4">Crystal clear and smooth. Perfect for daily use.</p>
+                                <div class="text-2xl font-bold text-amber-700 mb-4">NPR 1200 <span class="text-lg font-normal text-gray-500">/ 1 Kg</span></div>
+                                <button onclick="openBookingModal('Filtered Honey - 1 Kg', 'NPR 1200')" class="w-full bg-amber-800 text-white py-2 px-4 rounded-lg hover:bg-amber-900 transition">Order Now</button>
+                            </div>
+                        </div>
+                        <!-- Product Card: Unfiltered Honey 0.5kg -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                            <img src="https://placehold.co/400x300/D97706/ffffff?text=Unfiltered+Honey" alt="Unfiltered Honey" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h4 class="text-xl font-semibold mb-2">Unfiltered Honey</h4>
+                                <p class="text-gray-600 mb-4">Raw and full of natural pollen and enzymes.</p>
+                                <div class="text-2xl font-bold text-amber-700 mb-4">NPR 600 <span class="text-lg font-normal text-gray-500">/ 0.5 Kg</span></div>
+                                <button onclick="openBookingModal('Unfiltered Honey - 0.5 Kg', 'NPR 600')" class="w-full bg-amber-800 text-white py-2 px-4 rounded-lg hover:bg-amber-900 transition">Order Now</button>
+                            </div>
+                        </div>
+                        <!-- Product Card: Unfiltered Honey 1kg -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                            <img src="https://placehold.co/400x300/D97706/ffffff?text=Unfiltered+Honey" alt="Unfiltered Honey" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h4 class="text-xl font-semibold mb-2">Unfiltered Honey</h4>
+                                <p class="text-gray-600 mb-4">Raw and full of natural pollen and enzymes.</p>
+                                <div class="text-2xl font-bold text-amber-700 mb-4">NPR 1200 <span class="text-lg font-normal text-gray-500">/ 1 Kg</span></div>
+                                <button onclick="openBookingModal('Unfiltered Honey - 1 Kg', 'NPR 1200')" class="w-full bg-amber-800 text-white py-2 px-4 rounded-lg hover:bg-amber-900 transition">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beekeeping Instruments -->
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Beekeeping Instruments</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Instrument Card -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                            <img src="https://placehold.co/400x300/a16207/ffffff?text=Beesuit" alt="Beesuit" class="w-full h-48 object-cover">
+                            <div class="p-6 text-center">
+                                <h4 class="text-xl font-semibold mb-2">Beesuit</h4>
+                                <button onclick="openBookingModal('Beesuit', 'Price on Request')" class="mt-4 w-full bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition">Request Info</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                            <img src="https://placehold.co/400x300/a16207/ffffff?text=Smoker" alt="Smoker" class="w-full h-48 object-cover">
+                            <div class="p-6 text-center">
+                                <h4 class="text-xl font-semibold mb-2">Bee Smoker</h4>
+                                <button onclick="openBookingModal('Bee Smoker', 'Price on Request')" class="mt-4 w-full bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition">Request Info</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                            <img src="https://placehold.co/400x300/a16207/ffffff?text=Hive+Tool" alt="Hive Tool" class="w-full h-48 object-cover">
+                            <div class="p-6 text-center">
+                                <h4 class="text-xl font-semibold mb-2">Hive Tool</h4>
+                                <button onclick="openBookingModal('Hive Tool', 'Price on Request')" class="mt-4 w-full bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition">Request Info</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+                            <img src="https://placehold.co/400x300/a16207/ffffff?text=Extractor" alt="Honey Extractor" class="w-full h-48 object-cover">
+                            <div class="p-6 text-center">
+                                <h4 class="text-xl font-semibold mb-2">Honey Extractor</h4>
+                                <button onclick="openBookingModal('Honey Extractor', 'Price on Request')" class="mt-4 w-full bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition">Request Info</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visit Us Section -->
+        <section id="visit" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-amber-900 mb-6">Schedule a Farm Visit</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed mb-8">
+                    Come see our bees in action! We offer guided tours where you can learn about the beekeeping process, see the hives up close, and enjoy a fresh honey tasting. Book your visit today for an unforgettable experience.
+                </p>
+                <button onclick="openBookingModal('Farm Visit Inquiry', '')" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">Book a Visit</button>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-amber-900 mb-12 text-center">Farm Gallery</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="grid gap-4">
+                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x700/fbbF24/ffffff?text=Honey+Production" alt=""></div>
+                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x500/a16207/ffffff?text=Our+Farm" alt=""></div>
+                    </div>
+                    <div class="grid gap-4">
+                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x500/fcaE1E/ffffff?text=Happy+Bees" alt=""></div>
+                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x800/D97706/ffffff?text=Harvesting" alt=""></div>
+                    </div>
+                    <div class="grid gap-4">
+                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x700/a16207/ffffff?text=Beekeeping+Gear" alt=""></div>
+                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x500/fbbF24/ffffff?text=Bottling" alt=""></div>
+                    </div>
+                    <div class="grid gap-4">
+                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x500/D97706/ffffff?text=Local+Flora" alt=""></div>
+                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x800/fcaE1E/ffffff?text=Pure+Honey" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-amber-900 mb-12 text-center">What Our Customers Say</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-amber-50 p-8 rounded-xl shadow-sm">
+                        <p class="text-gray-600 mb-4">"The best honey I've ever tasted! The unfiltered version is my favorite. You can truly taste the purity."</p>
+                        <p class="font-bold text-amber-800">- Anjali S.</p>
+                    </div>
+                    <div class="bg-amber-50 p-8 rounded-xl shadow-sm">
+                        <p class="text-gray-600 mb-4">"Visiting the farm was a wonderful experience. Lalnidhi and his family are so knowledgeable and passionate."</p>
+                        <p class="font-bold text-amber-800">- Bikram R.</p>
+                    </div>
+                    <div class="bg-amber-50 p-8 rounded-xl shadow-sm">
+                        <p class="text-gray-600 mb-4">"I bought a complete beekeeping kit from them. The quality is excellent and their advice was very helpful for a beginner like me."</p>
+                        <p class="font-bold text-amber-800">- Sunita G.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-4xl font-bold text-amber-900 mb-12 text-center">Frequently Asked Questions</h2>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <button class="w-full text-left flex justify-between items-center faq-toggle">
+                            <h3 class="text-lg font-semibold">What’s the difference between filtered & unfiltered honey?</h3>
+                            <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="mt-2 text-gray-600 hidden faq-answer">
+                            Unfiltered, or raw, honey contains bee pollen, beeswax, and propolis which are removed during filtering. Filtered honey has a clearer, smoother consistency, while unfiltered honey is often creamier and contains more of the natural beneficial compounds from the hive.
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <button class="w-full text-left flex justify-between items-center faq-toggle">
+                            <h3 class="text-lg font-semibold">How is the purity ensured?</h3>
+                            <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="mt-2 text-gray-600 hidden faq-answer">
+                            Our bees forage in natural, pesticide-free environments. We do not add any sugars, syrups, or preservatives to our honey. It's 100% pure, straight from the hive to your table.
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <button class="w-full text-left flex justify-between items-center faq-toggle">
+                            <h3 class="text-lg font-semibold">How do you deliver?</h3>
+                            <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="mt-2 text-gray-600 hidden faq-answer">
+                            We offer local delivery within the Gulmi district and surrounding areas. For orders outside this region, please contact us to arrange for courier services. Delivery charges may appl
