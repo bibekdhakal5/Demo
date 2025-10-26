@@ -1,258 +1,768 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lalnidhi Honey Farm - Pure Honey & Beekeeping Supplies</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Teen Patti Deluxe</title>
     <style>
+        :root {
+            --primary: #0b3d91;
+            --secondary: #ffd166;
+            --accent: #06d6a0;
+            --danger: #ef476f;
+            --dark-blue: #055a8c;
+            --light-blue: #90e0ef;
+            --white: #ffffff;
+            --black: #000000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
         }
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1600x900/fbbF24/333333?text=Golden+Honey+Harvest');
-            background-size: cover;
-            background-position: center;
+        
+        .screen {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.5s ease;
         }
-        .gallery-img {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .active {
+            display: block;
         }
-        .gallery-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        
+        h1 {
+            text-align: center;
+            color: var(--secondary);
+            font-size: 2.5rem;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        h2 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--black);
+        }
+        
+        .btn-success {
+            background-color: var(--accent);
+            color: var(--black);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+            color: var(--white);
+        }
+        
+        .btn-info {
+            background-color: var(--light-blue);
+            color: var(--black);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        
+        .player-setup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .game-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .players-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .player-card {
+            background-color: var(--dark-blue);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .player-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+        
+        .player-coins {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .card-slot {
+            width: 80px;
+            height: 112px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            overflow: hidden;
+        }
+        
+        .card-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .game-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .pot-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+            color: var(--secondary);
+        }
+        
+        .result-display {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .rules-content {
+            line-height: 1.6;
+        }
+        
+        .rules-content ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .rules-content li {
+            margin-bottom: 8px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .player-setup-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .players-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
-<body class="bg-amber-50 text-gray-800">
-
-    <!-- Header & Navigation -->
-    <header id="home" class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#home" class="text-2xl font-bold text-amber-900">Lalnidhi Honey Farm</a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#about" class="text-gray-700 hover:text-amber-600 transition">About</a>
-                <a href="#shop" class="text-gray-700 hover:text-amber-600 transition">Shop</a>
-                <a href="#visit" class="text-gray-700 hover:text-amber-600 transition">Visit Us</a>
-                <a href="#gallery" class="text-gray-700 hover:text-amber-600 transition">Gallery</a>
-                <a href="#contact" class="text-gray-700 hover:text-amber-600 transition">Contact</a>
+<body>
+    <div class="container">
+        <!-- Main Menu Screen -->
+        <div id="main-menu" class="screen active">
+            <h1>🎴 Teen Patti — Deluxe</h1>
+            <div class="card">
+                <button id="play-btn" class="btn btn-primary">▶ Play</button>
+                <button id="rules-btn" class="btn btn-success">📜 Rules</button>
+                <button id="exit-btn" class="btn btn-danger">❌ Exit</button>
             </div>
-            <button id="mobile-menu-button" class="md:hidden flex items-center">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#about" class="block py-2 px-4 text-sm hover:bg-amber-100">About</a>
-            <a href="#shop" class="block py-2 px-4 text-sm hover:bg-amber-100">Shop</a>
-            <a href="#visit" class="block py-2 px-4 text-sm hover:bg-amber-100">Visit Us</a>
-            <a href="#gallery" class="block py-2 px-4 text-sm hover:bg-amber-100">Gallery</a>
-            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-amber-100">Contact</a>
+            <div class="card">
+                <p>Card images should be placed in a folder named "cards" with names like: 2_of_clubs.png, ace_of_spades.png, etc.</p>
+            </div>
         </div>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-bg text-white h-[80vh] flex items-center justify-center text-center">
-            <div class="container mx-auto px-6">
-                <h1 class="text-5xl md:text-7xl font-bold mb-4 drop-shadow-lg">Pure, Natural Honey, Straight from the Farm</h1>
-                <p class="text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">Experience the taste of pure nature with our filtered and unfiltered honey varieties.</p>
-                <div class="space-y-4 md:space-y-0 md:space-x-4">
-                    <a href="#shop-honey" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block">Order Honey</a>
-                    <a href="#visit" class="bg-transparent border-2 border-white hover:bg-white hover:text-amber-900 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block">Visit the Farm</a>
+        <!-- Player Setup Screen -->
+        <div id="player-setup" class="screen">
+            <h1>Game Setup</h1>
+            <div class="card">
+                <div class="form-group">
+                    <label for="num-players">Number of Players (2-4):</label>
+                    <select id="num-players">
+                        <option value="2">2 Players</option>
+                        <option value="3">3 Players</option>
+                        <option value="4">4 Players</option>
+                    </select>
                 </div>
-            </div>
-        </section>
-
-        <!-- About Us Section -->
-        <section id="about" class="py-20 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold text-amber-900 mb-6">About Lalnidhi Honey Farm</h2>
-                <p class="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
-                    It is a farm where you can get very pure honey with full filter or unfiltered as per your preference. We are dedicated to sustainable beekeeping practices to bring you the highest quality honey. We also provide other high-quality beekeeping equipment to support fellow apiarists.
-                </p>
-            </div>
-        </section>
-
-        <!-- Shop Section -->
-        <section id="shop" class="py-20">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-amber-900 mb-12 text-center">Our Products</h2>
-
-                <!-- Honey Products -->
-                <div id="shop-honey" class="mb-16">
-                    <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Farm Fresh Honey</h3>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <!-- Product Card: Filtered Honey 0.5kg -->
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
-                            <img src="https://placehold.co/400x300/fcaE1E/ffffff?text=Filtered+Honey" alt="Filtered Honey" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h4 class="text-xl font-semibold mb-2">Filtered Honey</h4>
-                                <p class="text-gray-600 mb-4">Crystal clear and smooth. Perfect for daily use.</p>
-                                <div class="text-2xl font-bold text-amber-700 mb-4">NPR 600 <span class="text-lg font-normal text-gray-500">/ 0.5 Kg</span></div>
-                                <button onclick="openBookingModal('Filtered Honey - 0.5 Kg', 'NPR 600')" class="w-full bg-amber-800 text-white py-2 px-4 rounded-lg hover:bg-amber-900 transition">Order Now</button>
-                            </div>
-                        </div>
-                        <!-- Product Card: Filtered Honey 1kg -->
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
-                           <img src="https://placehold.co/400x300/fcaE1E/ffffff?text=Filtered+Honey" alt="Filtered Honey" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h4 class="text-xl font-semibold mb-2">Filtered Honey</h4>
-                                <p class="text-gray-600 mb-4">Crystal clear and smooth. Perfect for daily use.</p>
-                                <div class="text-2xl font-bold text-amber-700 mb-4">NPR 1200 <span class="text-lg font-normal text-gray-500">/ 1 Kg</span></div>
-                                <button onclick="openBookingModal('Filtered Honey - 1 Kg', 'NPR 1200')" class="w-full bg-amber-800 text-white py-2 px-4 rounded-lg hover:bg-amber-900 transition">Order Now</button>
-                            </div>
-                        </div>
-                        <!-- Product Card: Unfiltered Honey 0.5kg -->
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
-                            <img src="https://placehold.co/400x300/D97706/ffffff?text=Unfiltered+Honey" alt="Unfiltered Honey" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h4 class="text-xl font-semibold mb-2">Unfiltered Honey</h4>
-                                <p class="text-gray-600 mb-4">Raw and full of natural pollen and enzymes.</p>
-                                <div class="text-2xl font-bold text-amber-700 mb-4">NPR 600 <span class="text-lg font-normal text-gray-500">/ 0.5 Kg</span></div>
-                                <button onclick="openBookingModal('Unfiltered Honey - 0.5 Kg', 'NPR 600')" class="w-full bg-amber-800 text-white py-2 px-4 rounded-lg hover:bg-amber-900 transition">Order Now</button>
-                            </div>
-                        </div>
-                        <!-- Product Card: Unfiltered Honey 1kg -->
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
-                            <img src="https://placehold.co/400x300/D97706/ffffff?text=Unfiltered+Honey" alt="Unfiltered Honey" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h4 class="text-xl font-semibold mb-2">Unfiltered Honey</h4>
-                                <p class="text-gray-600 mb-4">Raw and full of natural pollen and enzymes.</p>
-                                <div class="text-2xl font-bold text-amber-700 mb-4">NPR 1200 <span class="text-lg font-normal text-gray-500">/ 1 Kg</span></div>
-                                <button onclick="openBookingModal('Unfiltered Honey - 1 Kg', 'NPR 1200')" class="w-full bg-amber-800 text-white py-2 px-4 rounded-lg hover:bg-amber-900 transition">Order Now</button>
-                            </div>
-                        </div>
+                
+                <div class="form-group">
+                    <label for="start-coins">Starting Coins per Player:</label>
+                    <input type="number" id="start-coins" value="100" min="10" max="1000">
+                </div>
+                
+                <h2>Player Names:</h2>
+                <div class="player-setup-grid">
+                    <div class="form-group">
+                        <label for="player1">Player 1:</label>
+                        <input type="text" id="player1" placeholder="Player 1">
+                    </div>
+                    <div class="form-group">
+                        <label for="player2">Player 2:</label>
+                        <input type="text" id="player2" placeholder="Player 2">
+                    </div>
+                    <div class="form-group">
+                        <label for="player3">Player 3:</label>
+                        <input type="text" id="player3" placeholder="Player 3">
+                    </div>
+                    <div class="form-group">
+                        <label for="player4">Player 4:</label>
+                        <input type="text" id="player4" placeholder="Player 4">
                     </div>
                 </div>
-
-                <!-- Beekeeping Instruments -->
-                <div>
-                    <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Beekeeping Instruments</h3>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <!-- Instrument Card -->
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
-                            <img src="https://placehold.co/400x300/a16207/ffffff?text=Beesuit" alt="Beesuit" class="w-full h-48 object-cover">
-                            <div class="p-6 text-center">
-                                <h4 class="text-xl font-semibold mb-2">Beesuit</h4>
-                                <button onclick="openBookingModal('Beesuit', 'Price on Request')" class="mt-4 w-full bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition">Request Info</button>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
-                            <img src="https://placehold.co/400x300/a16207/ffffff?text=Smoker" alt="Smoker" class="w-full h-48 object-cover">
-                            <div class="p-6 text-center">
-                                <h4 class="text-xl font-semibold mb-2">Bee Smoker</h4>
-                                <button onclick="openBookingModal('Bee Smoker', 'Price on Request')" class="mt-4 w-full bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition">Request Info</button>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
-                            <img src="https://placehold.co/400x300/a16207/ffffff?text=Hive+Tool" alt="Hive Tool" class="w-full h-48 object-cover">
-                            <div class="p-6 text-center">
-                                <h4 class="text-xl font-semibold mb-2">Hive Tool</h4>
-                                <button onclick="openBookingModal('Hive Tool', 'Price on Request')" class="mt-4 w-full bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition">Request Info</button>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
-                            <img src="https://placehold.co/400x300/a16207/ffffff?text=Extractor" alt="Honey Extractor" class="w-full h-48 object-cover">
-                            <div class="p-6 text-center">
-                                <h4 class="text-xl font-semibold mb-2">Honey Extractor</h4>
-                                <button onclick="openBookingModal('Honey Extractor', 'Price on Request')" class="mt-4 w-full bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition">Request Info</button>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="game-controls">
+                    <button id="start-game-btn" class="btn btn-primary">Start Game</button>
+                    <button id="back-to-menu-btn" class="btn btn-danger">⬅ Back</button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Visit Us Section -->
-        <section id="visit" class="py-20 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold text-amber-900 mb-6">Schedule a Farm Visit</h2>
-                <p class="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed mb-8">
-                    Come see our bees in action! We offer guided tours where you can learn about the beekeeping process, see the hives up close, and enjoy a fresh honey tasting. Book your visit today for an unforgettable experience.
-                </p>
-                <button onclick="openBookingModal('Farm Visit Inquiry', '')" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">Book a Visit</button>
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <h1>Teen Patti — Table</h1>
+            
+            <div class="players-container" id="players-container">
+                <!-- Player cards will be dynamically generated here -->
             </div>
-        </section>
-        
-        <!-- Gallery Section -->
-        <section id="gallery" class="py-20">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-amber-900 mb-12 text-center">Farm Gallery</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="grid gap-4">
-                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x700/fbbF24/ffffff?text=Honey+Production" alt=""></div>
-                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x500/a16207/ffffff?text=Our+Farm" alt=""></div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x500/fcaE1E/ffffff?text=Happy+Bees" alt=""></div>
-                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x800/D97706/ffffff?text=Harvesting" alt=""></div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x700/a16207/ffffff?text=Beekeeping+Gear" alt=""></div>
-                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x500/fbbF24/ffffff?text=Bottling" alt=""></div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x500/D97706/ffffff?text=Local+Flora" alt=""></div>
-                        <div><img class="h-auto max-w-full rounded-lg gallery-img" src="https://placehold.co/500x800/fcaE1E/ffffff?text=Pure+Honey" alt=""></div>
-                    </div>
+            
+            <div class="card">
+                <div class="pot-display" id="pot-display">Pot: 0</div>
+                
+                <div class="game-controls">
+                    <button id="place-bets-btn" class="btn btn-primary">💰 Place Bets</button>
+                    <button id="deal-reveal-btn" class="btn btn-info">🎲 Deal & Reveal</button>
+                    <button id="next-round-btn" class="btn btn-success">🔁 Next Round</button>
+                    <button id="auto-bet-btn" class="btn btn-info">🤖 Auto Bet (1)</button>
+                    <button id="reset-game-btn" class="btn btn-danger">🔄 Reset Game</button>
+                    <button id="game-to-menu-btn" class="btn btn-danger">🏠 Main Menu</button>
+                </div>
+                
+                <div class="result-display" id="result-display"></div>
+            </div>
+        </div>
+
+        <!-- Rules Screen -->
+        <div id="rules-screen" class="screen">
+            <h1>Game Rules</h1>
+            <div class="card">
+                <div class="rules-content">
+                    <p>Each player gets 3 cards. Ranking from highest to lowest:</p>
+                    <ol>
+                        <li><strong>Trail</strong> (Three of same rank)</li>
+                        <li><strong>Pure Sequence</strong> (Straight Flush)</li>
+                        <li><strong>Sequence</strong> (Straight)</li>
+                        <li><strong>Color</strong> (Flush)</li>
+                        <li><strong>Pair</strong></li>
+                        <li><strong>High Card</strong></li>
+                    </ol>
+                    <p><strong>Betting:</strong> Each player places a bet each round; the winner takes the pot. Ties split the pot.</p>
+                </div>
+                
+                <div class="game-controls">
+                    <button id="back-from-rules-btn" class="btn btn-danger">⬅ Back</button>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-amber-900 mb-12 text-center">What Our Customers Say</h2>
-                <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <div class="bg-amber-50 p-8 rounded-xl shadow-sm">
-                        <p class="text-gray-600 mb-4">"The best honey I've ever tasted! The unfiltered version is my favorite. You can truly taste the purity."</p>
-                        <p class="font-bold text-amber-800">- Anjali S.</p>
-                    </div>
-                    <div class="bg-amber-50 p-8 rounded-xl shadow-sm">
-                        <p class="text-gray-600 mb-4">"Visiting the farm was a wonderful experience. Lalnidhi and his family are so knowledgeable and passionate."</p>
-                        <p class="font-bold text-amber-800">- Bikram R.</p>
-                    </div>
-                    <div class="bg-amber-50 p-8 rounded-xl shadow-sm">
-                        <p class="text-gray-600 mb-4">"I bought a complete beekeeping kit from them. The quality is excellent and their advice was very helpful for a beginner like me."</p>
-                        <p class="font-bold text-amber-800">- Sunita G.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <script>
+        // Game state
+        const gameState = {
+            numPlayers: 2,
+            playerNames: [],
+            coins: [],
+            hands: [],
+            pot: 0,
+            currentScreen: 'main-menu'
+        };
 
-        <!-- FAQ Section -->
-        <section id="faq" class="py-20">
-            <div class="container mx-auto px-6 max-w-3xl">
-                <h2 class="text-4xl font-bold text-amber-900 mb-12 text-center">Frequently Asked Questions</h2>
-                <div class="space-y-4">
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <button class="w-full text-left flex justify-between items-center faq-toggle">
-                            <h3 class="text-lg font-semibold">What’s the difference between filtered & unfiltered honey?</h3>
-                            <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="mt-2 text-gray-600 hidden faq-answer">
-                            Unfiltered, or raw, honey contains bee pollen, beeswax, and propolis which are removed during filtering. Filtered honey has a clearer, smoother consistency, while unfiltered honey is often creamier and contains more of the natural beneficial compounds from the hive.
-                        </div>
+        // Card data
+        const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+        const suits = ['♠', '♥', '♦', '♣'];
+        const suitSymbols = {
+            '♠': 'spades',
+            '♥': 'hearts', 
+            '♦': 'diamonds',
+            '♣': 'clubs'
+        };
+
+        // DOM elements
+        const screens = {
+            'main-menu': document.getElementById('main-menu'),
+            'player-setup': document.getElementById('player-setup'),
+            'game-screen': document.getElementById('game-screen'),
+            'rules-screen': document.getElementById('rules-screen')
+        };
+
+        // Initialize the game
+        function init() {
+            // Set up event listeners
+            document.getElementById('play-btn').addEventListener('click', () => showScreen('player-setup'));
+            document.getElementById('rules-btn').addEventListener('click', () => showScreen('rules-screen'));
+            document.getElementById('exit-btn').addEventListener('click', () => {
+                if (confirm('Are you sure you want to exit?')) {
+                    window.close();
+                }
+            });
+            
+            document.getElementById('start-game-btn').addEventListener('click', startGame);
+            document.getElementById('back-to-menu-btn').addEventListener('click', () => showScreen('main-menu'));
+            document.getElementById('back-from-rules-btn').addEventListener('click', () => showScreen('main-menu'));
+            
+            document.getElementById('game-to-menu-btn').addEventListener('click', () => {
+                if (confirm('Return to main menu? Current game will be lost.')) {
+                    showScreen('main-menu');
+                }
+            });
+            
+            document.getElementById('place-bets-btn').addEventListener('click', placeBets);
+            document.getElementById('deal-reveal-btn').addEventListener('click', dealAndReveal);
+            document.getElementById('next-round-btn').addEventListener('click', nextRound);
+            document.getElementById('auto-bet-btn').addEventListener('click', autoBet);
+            document.getElementById('reset-game-btn').addEventListener('click', resetGame);
+            
+            // Set default player names
+            document.getElementById('player1').value = 'Player 1';
+            document.getElementById('player2').value = 'Player 2';
+            document.getElementById('player3').value = 'Player 3';
+            document.getElementById('player4').value = 'Player 4';
+        }
+
+        // Show a specific screen
+        function showScreen(screenName) {
+            // Hide all screens
+            Object.values(screens).forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Show the requested screen
+            screens[screenName].classList.add('active');
+            gameState.currentScreen = screenName;
+        }
+
+        // Start the game with the selected settings
+        function startGame() {
+            // Get game settings
+            gameState.numPlayers = parseInt(document.getElementById('num-players').value);
+            const startCoins = parseInt(document.getElementById('start-coins').value);
+            
+            // Get player names
+            gameState.playerNames = [];
+            for (let i = 1; i <= 4; i++) {
+                const name = document.getElementById(`player${i}`).value.trim();
+                if (name) {
+                    gameState.playerNames.push(name);
+                } else {
+                    gameState.playerNames.push(`Player ${i}`);
+                }
+            }
+            
+            // Initialize game state
+            gameState.coins = Array(gameState.numPlayers).fill(startCoins);
+            gameState.hands = Array(gameState.numPlayers).fill([]);
+            gameState.pot = 0;
+            
+            // Set up the game screen
+            setupGameScreen();
+            
+            // Show the game screen
+            showScreen('game-screen');
+        }
+
+        // Set up the game screen with player cards
+        function setupGameScreen() {
+            const playersContainer = document.getElementById('players-container');
+            playersContainer.innerHTML = '';
+            
+            for (let i = 0; i < gameState.numPlayers; i++) {
+                const playerCard = document.createElement('div');
+                playerCard.className = 'player-card';
+                playerCard.id = `player-${i}`;
+                
+                playerCard.innerHTML = `
+                    <div class="player-name">${gameState.playerNames[i]}</div>
+                    <div class="player-coins">Coins: ${gameState.coins[i]}</div>
+                    <div class="cards-container">
+                        <div class="card-slot" id="player-${i}-card-0">❓</div>
+                        <div class="card-slot" id="player-${i}-card-1">❓</div>
+                        <div class="card-slot" id="player-${i}-card-2">❓</div>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <button class="w-full text-left flex justify-between items-center faq-toggle">
-                            <h3 class="text-lg font-semibold">How is the purity ensured?</h3>
-                            <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="mt-2 text-gray-600 hidden faq-answer">
-                            Our bees forage in natural, pesticide-free environments. We do not add any sugars, syrups, or preservatives to our honey. It's 100% pure, straight from the hive to your table.
-                        </div>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <button class="w-full text-left flex justify-between items-center faq-toggle">
-                            <h3 class="text-lg font-semibold">How do you deliver?</h3>
-                            <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="mt-2 text-gray-600 hidden faq-answer">
-                            We offer local delivery within the Gulmi district and surrounding areas. For orders outside this region, please contact us to arrange for courier services. Delivery charges may appl
+                    <div class="player-score">Wins: 0</div>
+                `;
+                
+                playersContainer.appendChild(playerCard);
+            }
+            
+            updatePotDisplay();
+            document.getElementById('result-display').textContent = '';
+        }
+
+        // Update the pot display
+        function updatePotDisplay() {
+            document.getElementById('pot-display').textContent = `Pot: ${gameState.pot}`;
+        }
+
+        // Place bets for all players
+        function placeBets() {
+            if (gameState.coins.some(coins => coins <= 0)) {
+                alert('One or more players have no coins left. Reset the game or continue with remaining players.');
+                return;
+            }
+            
+            let totalBet = 0;
+            
+            for (let i = 0; i < gameState.numPlayers; i++) {
+                if (gameState.coins[i] > 0) {
+                    const maxBet = gameState.coins[i];
+                    const bet = prompt(`${gameState.playerNames[i]}: Enter bet (1 - ${maxBet})`, '1');
+                    
+                    if (bet === null) {
+                        // User canceled
+                        continue;
+                    }
+                    
+                    const betAmount = parseInt(bet) || 0;
+                    if (betAmount > 0 && betAmount <= maxBet) {
+                        gameState.coins[i] -= betAmount;
+                        totalBet += betAmount;
+                        updatePlayerDisplay(i);
+                    }
+                }
+            }
+            
+            gameState.pot = totalBet;
+            updatePotDisplay();
+        }
+
+        // Auto place minimum bets
+        function autoBet() {
+            if (gameState.coins.some(coins => coins <= 0)) {
+                alert('One or more players have no coins left. Reset the game or continue with remaining players.');
+                return;
+            }
+            
+            let totalBet = 0;
+            const minBet = 1;
+            
+            for (let i = 0; i < gameState.numPlayers; i++) {
+                if (gameState.coins[i] >= minBet) {
+                    gameState.coins[i] -= minBet;
+                    totalBet += minBet;
+                    updatePlayerDisplay(i);
+                }
+            }
+            
+            gameState.pot = totalBet;
+            updatePotDisplay();
+        }
+
+        // Deal cards and reveal hands
+        function dealAndReveal() {
+            // Play sound if available
+            playSound('shuffle');
+            
+            // Create and shuffle deck
+            const deck = [];
+            for (const rank of ranks) {
+                for (const suit of suits) {
+                    deck.push(rank + suit);
+                }
+            }
+            shuffleArray(deck);
+            
+            // Deal cards
+            gameState.hands = [];
+            for (let i = 0; i < gameState.numPlayers; i++) {
+                gameState.hands.push(deck.slice(i * 3, (i + 1) * 3));
+            }
+            
+            // Display cards
+            for (let i = 0; i < gameState.numPlayers; i++) {
+                for (let j = 0; j < 3; j++) {
+                    const card = gameState.hands[i][j];
+                    const cardSlot = document.getElementById(`player-${i}-card-${j}`);
+                    
+                    // Try to load card image
+                    const imgPath = getCardImagePath(card);
+                    if (imgPath) {
+                        cardSlot.innerHTML = `<img src="${imgPath}" alt="${card}">`;
+                    } else {
+                        cardSlot.textContent = card;
+                    }
+                }
+            }
+            
+            // Determine winner
+            const {winners, rank} = compareHands(gameState.hands);
+            const potShare = winners.length > 0 ? Math.floor(gameState.pot / winners.length) : 0;
+            
+            // Distribute winnings
+            for (const winner of winners) {
+                gameState.coins[winner] += potShare;
+                updatePlayerDisplay(winner);
+            }
+            
+            // Play win sound
+            playSound('win');
+            
+            // Display result
+            const resultDisplay = document.getElementById('result-display');
+            if (winners.length > 1) {
+                const names = winners.map(w => gameState.playerNames[w]).join(', ');
+                resultDisplay.textContent = `🤝 It's a tie between: ${names} — Each gets ${potShare} coins`;
+            } else if (winners.length === 1) {
+                resultDisplay.textContent = `🏆 ${gameState.playerNames[winners[0]]} wins the round and gets ${potShare} coins!`;
+            } else {
+                resultDisplay.textContent = 'No winners this round!';
+            }
+            
+            // Reset pot
+            gameState.pot = 0;
+            updatePotDisplay();
+        }
+
+        // Reset for next round
+        function nextRound() {
+            for (let i = 0; i < gameState.numPlayers; i++) {
+                for (let j = 0; j < 3; j++) {
+                    const cardSlot = document.getElementById(`player-${i}-card-${j}`);
+                    cardSlot.innerHTML = '❓';
+                }
+            }
+            
+            document.getElementById('result-display').textContent = '';
+        }
+
+        // Reset the entire game
+        function resetGame() {
+            const startCoins = parseInt(document.getElementById('start-coins').value);
+            gameState.coins = Array(gameState.numPlayers).fill(startCoins);
+            gameState.pot = 0;
+            
+            for (let i = 0; i < gameState.numPlayers; i++) {
+                updatePlayerDisplay(i);
+            }
+            
+            updatePotDisplay();
+            nextRound();
+        }
+
+        // Update player display
+        function updatePlayerDisplay(playerIndex) {
+            const playerCard = document.getElementById(`player-${playerIndex}`);
+            const coinsElement = playerCard.querySelector('.player-coins');
+            coinsElement.textContent = `Coins: ${gameState.coins[playerIndex]}`;
+        }
+
+        // Game logic functions
+        function cardValue(card) {
+            return ranks.indexOf(card.slice(0, -1));
+        }
+
+        function getHandRank(hand) {
+            const values = hand.map(cardValue).sort((a, b) => a - b);
+            const suitsInHand = hand.map(card => card.slice(-1));
+            
+            const isSeq = values[1] === values[0] + 1 && values[2] === values[1] + 1;
+            const isFlush = new Set(suitsInHand).size === 1;
+            
+            if (new Set(values).size === 1) {
+                return [6, values[0]]; // Trail
+            } else if (isSeq && isFlush) {
+                return [5, values[2]]; // Pure sequence
+            } else if (isSeq) {
+                return [4, values[2]]; // Sequence
+            } else if (isFlush) {
+                return [3, values[2], values[1], values[0]]; // Color
+            } else if (new Set(values).size === 2) {
+                // Find the pair value
+                let pairVal;
+                for (const v of values) {
+                    if (values.filter(x => x === v).length === 2) {
+                        pairVal = v;
+                        break;
+                    }
+                }
+                const singleVal = values.find(v => v !== pairVal);
+                return [2, pairVal, singleVal]; // Pair
+            } else {
+                return [1, values[2], values[1], values[0]]; // High card
+            }
+        }
+
+        function compareHands(hands) {
+            let bestRank = [-1];
+            let winners = [];
+            
+            for (let i = 0; i < hands.length; i++) {
+                const rank = getHandRank(hands[i]);
+                
+                // Compare ranks
+                let isBetter = false;
+                for (let j = 0; j < Math.max(rank.length, bestRank.length); j++) {
+                    const rVal = rank[j] || 0;
+                    const bVal = bestRank[j] || 0;
+                    
+                    if (rVal > bVal) {
+                        isBetter = true;
+                        break;
+                    } else if (rVal < bVal) {
+                        break;
+                    }
+                }
+                
+                if (isBetter) {
+                    bestRank = rank;
+                    winners = [i];
+                } else if (JSON.stringify(rank) === JSON.stringify(bestRank)) {
+                    winners.push(i);
+                }
+            }
+            
+            return {winners, rank: bestRank};
+        }
+
+        // Utility functions
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function getCardImagePath(card) {
+            const rankChar = card.slice(0, -1);
+            const suitChar = card.slice(-1);
+            
+            // Map rank
+            const rankMap = {
+                '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '10': '10',
+                'J': 'jack', 'Q': 'queen', 'K': 'king', 'A': 'ace'
+            };
+            
+            // Map suit  
+            const suitMap = {
+                '♠': 'spades', '♥': 'hearts', '♦': 'diamonds', '♣': 'clubs'
+            };
+            
+            const rankName = rankMap[rankChar];
+            const suitName = suitMap[suitChar];
+            
+            if (!rankName || !suitName) {
+                console.log(`Could not map card: ${card}`);
+                return null;
+            }
+            
+            const filename = `${rankName}_of_${suitName}.png`;
+            return `cards/${filename}`;
+        }
+
+        function playSound(name) {
+            // In a real implementation, you would play sound files here
+            console.log(`Playing sound: ${name}`);
+        }
+
+        // Initialize the game when the page loads
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
